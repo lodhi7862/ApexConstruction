@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink-900: #1a1a1a;
+  --ink-800: #2d2d2d;
+  --ink-700: #404040;
+  --accent: #d32f2f;
+  --accent-light: #e74c3c;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor scrolling so the sticky navbar never covers headings. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-ink-900 text-white font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-heading;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3
+      text-sm font-semibold tracking-wide transition-all duration-300
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-accent
+      focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900;
+    min-height: 44px;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-white shadow-[0_10px_30px_-10px_rgba(211,47,47,0.8)]
+      hover:bg-accent-dark hover:scale-105 hover:shadow-glow;
+  }
+
+  .btn-outline {
+    @apply btn border border-white/30 text-white
+      hover:border-accent hover:text-accent hover:scale-105;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase
+      tracking-[0.25em] text-accent-light;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl font-bold leading-tight sm:text-4xl md:text-5xl;
+  }
+
+  .card-surface {
+    @apply rounded-2xl border border-white/5 bg-ink-800/70 backdrop-blur-sm;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #ffffff 0%, #d0d0d0 50%, #9a9a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
